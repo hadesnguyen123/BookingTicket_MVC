@@ -1,4 +1,5 @@
 ﻿using BookingTicket.Data;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -19,5 +20,13 @@ namespace BookingTicket.Controllers
             var allMovies = await _context.Movies.Include(x => x.Cinema).ToListAsync();
             return View(allMovies);
         }
+
+        ////GET: Movies/Details/1
+        //[AllowAnonymous]
+        //public async Task<IActionResult> Details(int id)
+        //{
+        //    var movieDetail = await _service.GetMovieByIdAsync(id);
+        //    return View(movieDetail);
+        //}
     }
 }

@@ -14,28 +14,34 @@ namespace BookingTicket.Data.Services
 
         public void Add(Actor actor)
         {
-            throw new NotImplementedException();
+            _context.Actors.Add(actor);
+            _context.SaveChanges(); 
         }
 
         public void Delete(int id)
         {
-            throw new NotImplementedException();
+            var actor = _context.Actors.FirstOrDefault(x => x.Id == id);
+            _context.Actors.Remove(actor);
+            _context.SaveChanges();
         }
 
-        public async Task<IEnumerable<Actor>> GetAll()
+        public IEnumerable<Actor> GetAll()
         {
-            var result = await _context.Actors.ToListAsync();
+            var result =  _context.Actors.ToList();
             return result;
         }
 
+
         public Actor GetById(int id)
         {
-            throw new NotImplementedException();
+            return _context.Actors.FirstOrDefault(x => x.Id == id);
         }
 
         public Actor Update(int id, Actor newActor)
         {
-            throw new NotImplementedException();
+            _context.Update(newActor);
+            _context.SaveChanges();
+            return newActor;
         }
     }
 }
